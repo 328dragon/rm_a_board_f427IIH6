@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "bsp_can.h": "c",
+        "motor.h": "c",
+        "main.h": "c",
+        "stm32f4xx_hal.h": "c",
+        "can.h": "c",
+        "dm_motor_drv.h": "c",
+        "cstdint": "cpp",
+        "cmath": "cpp"
+    }
+}

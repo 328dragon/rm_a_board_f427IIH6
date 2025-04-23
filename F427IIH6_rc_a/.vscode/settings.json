@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "bsp_can.h": "c",
+        "motor.h": "c",
+        "remote_control.h": "c",
+        "can_task.h": "c",
+        "control_task.h": "c",
+        "main.h": "c",
+        "compare": "c",
+        "cybergear.h": "c"
+    }
+}
