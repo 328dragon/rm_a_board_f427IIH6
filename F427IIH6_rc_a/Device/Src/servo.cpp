@@ -9,9 +9,8 @@ void Servo_base_t::initServo()
     __HAL_TIM_SET_COMPARE(_htim, _channel, 0);
 }
 
-void Servo_base_t::control(float angle)
+void Servo_base_t::control()
 {
-    _target_angle = angle;
     uint32_t pulse = 0;
     if (_target_angle >= _current_angle)
     {

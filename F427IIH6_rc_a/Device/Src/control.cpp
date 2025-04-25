@@ -8,18 +8,7 @@ void Control::Control_t::controlUpdate(float x, float y, float yaw)
     _y = y/100.0f;
     _yaw = yaw/100.0f;
 
-    (*_servoX)._target_angle =2*atan((_y-sqrt(-(_x*_x+_y*_y)*(25*_x*_x+25*_y*_y-1)))/(5*_x*_x-_x+5*_y*_y));
-    (*_servoY)._target_angle=-2*atan((_y-sqrt(-(_x*_x+_y*_y)*(25*_x*_x+25*_y*_y-1)))/(5*_x*_x+_x+5*_y*_y));
+    (_servoX)->_target_angle =2*atan((_y-sqrt(-(_x*_x+_y*_y)*(25*_x*_x+25*_y*_y-1)))/(5*_x*_x-_x+5*_y*_y));
+    (_servoY)->_target_angle=-2*atan((_y-sqrt(-(_x*_x+_y*_y)*(25*_x*_x+25*_y*_y-1)))/(5*_x*_x+_x+5*_y*_y));
     
-}
-
-void Control::Control_t::doCalcontrol()
-{																																																								 
-    (*_servoX).control( (*_servoX)._target_angle );
-    (*_servoY).control((*_servoY)._target_angle);
-}
-
-void Control::Control_t::doYawcontrol()
-{
-    _servoYAW->control(_yaw);
 }

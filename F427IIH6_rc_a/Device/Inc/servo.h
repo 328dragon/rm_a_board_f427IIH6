@@ -8,13 +8,14 @@ namespace Servo
     {
     public:
         Servo_base_t()=default;
-        Servo_base_t(TIM_HandleTypeDef *htim, uint32_t channel,float min_angle,float max_angle,float use_min_angle,float use_max_angle)
+        Servo_base_t(TIM_HandleTypeDef *htim, uint32_t channel,float zero_angle,float min_angle,float max_angle,float use_min_angle,float use_max_angle)
         {
             _htim = htim;
             _channel = channel;
             _target_angle = 0.0f;
             _current_angle=_target_angle;
             _velocity = 0.0f;
+            _zero_angle=zero_angle;
             _min_angle=min_angle;
             _max_angle=max_angle;
             _use_min_angle=use_min_angle;
@@ -24,11 +25,12 @@ namespace Servo
 //        ~ServoMotor();
 
         void initServo();
-        void control(float angle);
+        void control();
 
         float _target_angle;
         float _current_angle;
         float _velocity;
+        float _zero_angle;
         float _min_angle;
         float _max_angle;
         float _use_min_angle;

@@ -25,4 +25,4 @@ f427iih6_can/control.o: ..\Device\Src\control.cpp ..\Device\Inc\control.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim_ex.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h \
   ..\mcu_bsp\can\bsp_can.h ..\Core\Inc\can.h ..\Device\Inc\CyberGear.h \
-  ..\Device\Inc\servo.h
+  ..\Core\Inc\tim.h ..\Device\Inc\servo.h
