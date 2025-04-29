@@ -15,16 +15,16 @@ namespace Servo
             _target_angle = 0.0f;
             _current_angle=_target_angle;
             _velocity = 0.0f;
-            _zero_angle=zero_angle;
-            _min_angle=min_angle;
+            _zero_angle=zero_angle;                                                          
             _max_angle=max_angle;
+            _min_angle=min_angle;
             _use_min_angle=use_min_angle;
             _use_max_angle=use_max_angle;
+	          HAL_TIM_PWM_Start(_htim, _channel);//			
+//					  __HAL_TIM_SET_COMPARE(_htim,_channel,(_zero_angle*57+250));
         }
 
-//        ~ServoMotor();
 
-        void initServo();
         void control();
 
         float _target_angle;

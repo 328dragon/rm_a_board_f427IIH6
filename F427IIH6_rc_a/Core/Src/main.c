@@ -101,9 +101,10 @@ int main(void)
   MX_TIM4_Init();
   MX_TIM5_Init();
   /* USER CODE BEGIN 2 */
-main_cpp();
-HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);//
-  HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_2);//
+
+
+//	__HAL_TIM_SET_COMPARE(&htim4,TIM_CHANNEL_1,500);
+	main_cpp();
 //	
 //__HAL_TIM_SET_COMPARE(&htim4,TIM_CHANNEL_1,500);
 //HAL_Delay(200);

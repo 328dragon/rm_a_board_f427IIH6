@@ -31,6 +31,8 @@ void OnServo2_Control(void *pvParameters);
 // void message_update(void *pvParameters);
 void main_cpp(void)
 {
+
+	
   servoX = Servo::Servo_base_t(&htim4, TIM_CHANNEL_1, 0.0f, 0.0f, 270.0f, 0.0f, 180.0f);
   servoY = Servo::Servo_base_t(&htim4, TIM_CHANNEL_2, 0.0f, 0.0f, 270.0f, 0.0f, 180.0f);
   control = Control::Control_t(&servoX, &servoY);
@@ -72,7 +74,7 @@ void OnServo1_Control(void *pvParameters)
 
   while (1)
   {
-    servoX.control();
+     servoX.control();
     vTaskDelay(200);
   }
 }
@@ -81,7 +83,7 @@ void OnServo2_Control(void *pvParameters)
 {
   while (1)
   {
-    servoY.control();
+//    servoY.control();
     vTaskDelay(200);
   }
 }
