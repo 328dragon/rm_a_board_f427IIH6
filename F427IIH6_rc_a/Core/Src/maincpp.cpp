@@ -36,9 +36,9 @@ void main_cpp(void)
 {
 	
 	//增大，舵机顺时针转
-  servo_theta1 = Servo::Servo_base_t(&htim4, TIM_CHANNEL_1, 45, 0.0f, 180.0f,0.0f, 160.0f);//
-  servo_theta2 = Servo::Servo_base_t(&htim4, TIM_CHANNEL_2,0, 0.0f, 180.0f, 0.0f, 10.0f); //
-	  servo_theta3 = Servo::Servo_base_t(&htim4, TIM_CHANNEL_3,80, 0.0f, 180.0f, 0.0f, 150.0f); 
+  servo_theta1 = Servo::Servo_base_t(&htim4, TIM_CHANNEL_1,reverse_dir,90, 0.0f, 180.0f,0.0f, 160.0f);//
+  servo_theta2 = Servo::Servo_base_t(&htim4, TIM_CHANNEL_2,pos_dir,0, 0.0f, 180.0f, 0.0f, 140.0f); //
+	  servo_theta3 = Servo::Servo_base_t(&htim4, TIM_CHANNEL_3,pos_dir,80, 0.0f, 180.0f, 0.0f, 150.0f); 
   servo_theta1._state=finished;
   servo_theta2._state=finished;
 	 servo_theta3._state=finished;

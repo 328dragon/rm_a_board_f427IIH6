@@ -3,9 +3,9 @@
 <title>Static Call Graph - [F427IIH6_CAN\F427IIH6_CAN.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image F427IIH6_CAN\F427IIH6_CAN.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6220000: Last Updated: Thu May  8 23:34:55 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6220000: Last Updated: Fri May  9 00:34:25 2025
 <BR><P>
-<H3>Maximum Stack Usage =        436 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        444 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 __rt_entry_main &rArr; main &rArr; main_cpp &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vListInsertEnd
 <P>
@@ -265,7 +265,7 @@ Global Symbols
 <P><STRONG><a name="[14a]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[7c]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 436 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 444 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_main &rArr; main &rArr; main_cpp &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vListInsertEnd
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -1107,7 +1107,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_CCxChannelCmd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Servo::Servo_base_t::Servo_base_t__sub_object(TIM_HandleTypeDef*, unsigned int, int, float, float, float, float)
+<BR>[Called By]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Servo::Servo_base_t::Servo_base_t__sub_object(TIM_HandleTypeDef*, unsigned int, servo_dir, int, float, float, float, float)
 </UL>
 
 <P><STRONG><a name="[cf]"></a>HAL_UARTEx_ReceiveToIdle_DMA</STRONG> (Thumb, 194 bytes, Stack size 32 bytes, stm32f4xx_hal_uart.o(.text.HAL_UARTEx_ReceiveToIdle_DMA))
@@ -1415,7 +1415,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> maincpp.o(.text.main_cpp)
 </UL>
-<P><STRONG><a name="[f7]"></a>Servo::Servo_base_t::control(float)</STRONG> (Thumb, 684 bytes, Stack size 56 bytes, servo.o(.text._ZN5Servo12Servo_base_t7controlEf))
+<P><STRONG><a name="[f7]"></a>Servo::Servo_base_t::control(float)</STRONG> (Thumb, 840 bytes, Stack size 56 bytes, servo.o(.text._ZN5Servo12Servo_base_t7controlEf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 148<LI>Call Chain = Servo::Servo_base_t::control(float) &rArr; vTaskDelay &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vListInsertEnd
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
@@ -1424,8 +1424,8 @@ Global Symbols
 <LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OnServo1_Control(void*)
 </UL>
 
-<P><STRONG><a name="[f8]"></a>Servo::Servo_base_t::Servo_base_t__sub_object(TIM_HandleTypeDef*, unsigned int, int, float, float, float, float)</STRONG> (Thumb, 320 bytes, Stack size 56 bytes, maincpp.o(.text._ZN5Servo12Servo_base_tC2EP17TIM_HandleTypeDefjiffff))
-<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = Servo::Servo_base_t::Servo_base_t__sub_object(TIM_HandleTypeDef*, unsigned int, int, float, float, float, float) &rArr; HAL_TIM_PWM_Start &rArr; TIM_CCxChannelCmd
+<P><STRONG><a name="[f8]"></a>Servo::Servo_base_t::Servo_base_t__sub_object(TIM_HandleTypeDef*, unsigned int, servo_dir, int, float, float, float, float)</STRONG> (Thumb, 332 bytes, Stack size 56 bytes, maincpp.o(.text._ZN5Servo12Servo_base_tC2EP17TIM_HandleTypeDefj9servo_diriffff))
+<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = Servo::Servo_base_t::Servo_base_t__sub_object(TIM_HandleTypeDef*, unsigned int, servo_dir, int, float, float, float, float) &rArr; HAL_TIM_PWM_Start &rArr; TIM_CCxChannelCmd
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_Start
 </UL>
@@ -1489,7 +1489,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[7d]"></a>main</STRONG> (Thumb, 116 bytes, Stack size 24 bytes, main.o(.text.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 436 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 444 + Unknown Stack Size
 <LI>Call Chain = main &rArr; main_cpp &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vListInsertEnd
 </UL>
 <BR>[Calls]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelStart
@@ -1510,12 +1510,12 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[101]"></a>main_cpp</STRONG> (Thumb, 596 bytes, Stack size 232 bytes, maincpp.o(.text.main_cpp))
-<BR><BR>[Stack]<UL><LI>Max Depth = 412<LI>Call Chain = main_cpp &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vListInsertEnd
+<P><STRONG><a name="[101]"></a>main_cpp</STRONG> (Thumb, 612 bytes, Stack size 240 bytes, maincpp.o(.text.main_cpp))
+<BR><BR>[Stack]<UL><LI>Max Depth = 420<LI>Call Chain = main_cpp &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vListInsertEnd
 </UL>
 <BR>[Calls]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskCreate
 <LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Control::Control_t::Control_t__sub_object(Servo::Servo_base_t*, Servo::Servo_base_t*)
-<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Servo::Servo_base_t::Servo_base_t__sub_object(TIM_HandleTypeDef*, unsigned int, int, float, float, float, float)
+<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Servo::Servo_base_t::Servo_base_t__sub_object(TIM_HandleTypeDef*, unsigned int, servo_dir, int, float, float, float, float)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>

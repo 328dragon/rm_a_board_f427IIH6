@@ -3,7 +3,7 @@
 using namespace Control;
 #define rad_to_degree 57.30f
 // cm
-float R1=15.0f  ;
+float R1=15.0f ;
 float R2=16.5f ;
 float R_all=  sqrt(R1 * R1 + R2 * R2);
 float tmep_m_1;

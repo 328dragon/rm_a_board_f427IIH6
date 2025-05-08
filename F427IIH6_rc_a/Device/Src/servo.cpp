@@ -12,13 +12,18 @@ void Servo_base_t::control(float vel)
 	float step=0;
 	float temp_angle=0;
 	step=(_target_angle>_current_angle)? ((_target_angle - _current_angle)/10.0f): ((_current_angle - _target_angle) / 10.0f);//步长
+	
     _state=working;
+	
     if (_target_angle > _current_angle)
     {
 
         for (temp_angle = _current_angle; temp_angle <= _target_angle; temp_angle += step)
         {
+					if(_dir==pos_dir)
             pulse = (int)((temp_angle * 11.11f)+500);
+					else if(_dir==reverse_dir)
+						  pulse = (int)(((180-temp_angle) * 11.11f)+500);
             __HAL_TIM_SET_COMPARE(_htim, _channel, pulse);
             vTaskDelay(vel);
         }   
@@ -28,12 +33,16 @@ void Servo_base_t::control(float vel)
     {
         for (temp_angle = _current_angle; temp_angle >= _target_angle;temp_angle-= step)
         {
-             pulse = (int)((temp_angle * 11.11f)+500);
+          		if(_dir==pos_dir)
+            pulse = (int)((temp_angle * 11.11f)+500);
+					else if(_dir==reverse_dir)
+						  pulse = (int)(((180-temp_angle) * 11.11f)+500);
             __HAL_TIM_SET_COMPARE(_htim, _channel, pulse);
             vTaskDelay(vel);
         }
 				   _current_angle = _target_angle;                 
     }
+		
     _state=finished;
 }
 

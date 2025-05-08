@@ -9,13 +9,19 @@ typedef enum
   finished  
 } servo_state;
 
+typedef enum
+{
+ pos_dir=0,
+reverse_dir
+}servo_dir;
+
 namespace Servo
 {
     class Servo_base_t
     {
     public:
         Servo_base_t() = default;
-        Servo_base_t(TIM_HandleTypeDef *htim, uint32_t channel, int zero_angle, float min_angle, float max_angle, float use_min_angle, float use_max_angle)
+        Servo_base_t(TIM_HandleTypeDef *htim, uint32_t channel,servo_dir dir ,int zero_angle, float min_angle, float max_angle, float use_min_angle, float use_max_angle)
         {
             _htim = htim;
             _channel = channel;
@@ -28,6 +34,7 @@ namespace Servo
             _use_min_angle = use_min_angle;
             _use_max_angle = use_max_angle;
             HAL_TIM_PWM_Start(_htim, _channel); 
+					_dir=dir;
             __HAL_TIM_SET_COMPARE(_htim, _channel, (int)( _zero_angle*11.111f+500));
             _current_angle = _zero_angle;
         }
@@ -44,6 +51,7 @@ namespace Servo
         float _use_min_angle;
         float _use_max_angle;
         servo_state _state;
+				servo_dir _dir;
     protected:
         TIM_HandleTypeDef *_htim;
         uint32_t _channel;
