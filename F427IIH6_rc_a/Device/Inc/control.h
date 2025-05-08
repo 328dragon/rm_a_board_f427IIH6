@@ -9,16 +9,14 @@ namespace Control
     class Control_t
     {
         public:
-//       ~Control_t();
         Control_t() = default;
-        // Control_t(Servo::Servo_base_t* servoX,Servo): _servoX(&htim4, TIM_CHANNEL_1, 0.0f, 270.0f, 0.0f, 270.0f),_servoY(&htim4, TIM_CHANNEL_2, 0.0f, 270.0f, 0.0f, 270.0f)
-        Control_t(Servo::Servo_base_t* servoX,Servo::Servo_base_t* servoY)
+        Control_t(Servo::Servo_base_t* servo_theta1,Servo::Servo_base_t* servo_theta2)
         {
-            _servoX = servoX;
-            _servoY = servoY;
+            _servo_theta1 = servo_theta1;
+            _servo_theta2 = servo_theta2;
             _x = 0.0f;
-            _y = 0.0f;
-            _yaw = 0.0f;
+            _z = 0.0f;
+           _yaw = 0.0f;
 
         }
 
@@ -28,12 +26,16 @@ namespace Control
 
 
         float _x;
-        float _y;
+        float _z;
         float _yaw;
-        Servo::Servo_base_t* _servoX;
-        Servo::Servo_base_t* _servoY;
+
+        Servo::Servo_base_t* _servo_theta1;
+        Servo::Servo_base_t* _servo_theta2;
         Servo::Servo_base_t* _servoYAW;
 
     };
 }
+
+
+
 #endif

@@ -29,6 +29,7 @@
 /* USER CODE BEGIN Includes */
 	#include "dm_j4310.h"
 	#include "maincpp.h"
+	#include "math.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -38,7 +39,13 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define fireVelo_low 5
+#define fireVelo_high 9.5
+// 高精度二次模型（误差最小）
+int calculate_rpm(float desired_velocity) {
+    const float A =3745, B = -3339.759f;
+    return (int)( A * desired_velocity +B);
+}
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -49,7 +56,8 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+	float debug_shoot_velocity=0;
+int get_rpm=0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -101,11 +109,20 @@ int main(void)
   MX_TIM4_Init();
   MX_TIM5_Init();
   /* USER CODE BEGIN 2 */
+ HAL_GPIO_WritePin(POWER1_CTRL_GPIO_Port,POWER1_CTRL_Pin,1);
+  HAL_GPIO_WritePin(POWER2_CTRL_GPIO_Port,POWER2_CTRL_Pin,1);
+	 HAL_GPIO_WritePin(POWER3_CTRL_GPIO_Port,POWER3_CTRL_Pin,1);
+	  HAL_GPIO_WritePin(POWER4_CTRL_GPIO_Port,POWER4_CTRL_Pin,0);
+//	HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_1);
+//	int debug_pwm=0;
 
-
+		
 //	__HAL_TIM_SET_COMPARE(&htim4,TIM_CHANNEL_1,500);
 	main_cpp();
-//	
+
+
+
+
 //__HAL_TIM_SET_COMPARE(&htim4,TIM_CHANNEL_1,500);
 //HAL_Delay(200);
 //__HAL_TIM_SET_COMPARE(&htim4,TIM_CHANNEL_2,500);
@@ -115,6 +132,7 @@ int main(void)
 //bsp_can_1_config();
 //HAL_Delay(1);   
 // DM_4310_Register(&hcan1,0x001,0x000,mit_mode);
+
 //	DM_J4310_instnce[0]->dm_controller_instance.p_des=12;
 //DM_J4310_instnce[0]->dm_controller_instance.Kp = 1;
 //DM_J4310_instnce[0]->dm_controller_instance.Kd =1;
@@ -154,6 +172,13 @@ int main(void)
 
 //  MI_motor_SpeedControl(&xm_1, 25, 0.3);
 // HAL_Delay(3);
+   // // 开启dm电机
+//	 DM_J4310_Controller_t *Rise_DMj4310;
+//  Rise_DMj4310 = DM_4310_Register(&hcan1, 0x02, 0x03, pos_vel_mode);
+//  Enable_DM(Rise_DMj4310);
+//  HAL_Delay(10);
+//  Rise_DMj4310->dm_controller_instance.P_des = 0;
+//  Rise_DMj4310->dm_controller_instance.V_des = 3;
 
 
   /* USER CODE END 2 */
@@ -173,13 +198,14 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-		
-// Enable_DM(DM_J4310_instnce[0]);
+//		get_rpm= calculate_rpm(debug_shoot_velocity);
 //		
-//		       Control_DM(DM_J4310_instnce[0]);
- 
-//	 HAL_UART_Receive_DMA(&huart6,(uint8_t*)data,sizeof(data));
+//		       Control_DM(Rise_DMj4310);
+// 
+////	 HAL_UART_Receive_DMA(&huart6,(uint8_t*)data,sizeof(data));
 //		HAL_Delay(6);
+//			__HAL_TIM_SET_COMPARE(&htim4,TIM_CHANNEL_1,debug_pwm);
+//		HAL_Delay(10);
   }
   /* USER CODE END 3 */
 }

@@ -7,21 +7,24 @@
 #include "tim.h"
 
 float x = 0.0f;
-float y = 0.0f;
+float z = 0.0f;
 float yaw = 0.0f;
+float debug_velocity= 300.0f;
 
 #define QUEUE_LENGTH 10
 #define ITEM_SIZE sizeof(float)
 
-QueueHandle_t xQueue;
+
 
 TaskHandle_t Omain_handle;
 TaskHandle_t Servo1_Motor_handle;
 TaskHandle_t Servo2_Motor_handle;
 TaskHandle_t Remote_control_handle;
 
-Servo::Servo_base_t servoX;
-Servo::Servo_base_t servoY;
+Servo::Servo_base_t servo_theta1;
+Servo::Servo_base_t servo_theta2;
+Servo::Servo_base_t servo_theta3;
+
 Control::Control_t control;
 
 void Onmain_Task(void *pvParameters);
@@ -31,12 +34,16 @@ void OnServo2_Control(void *pvParameters);
 // void message_update(void *pvParameters);
 void main_cpp(void)
 {
-
 	
-  servoX = Servo::Servo_base_t(&htim4, TIM_CHANNEL_1, 0.0f, 0.0f, 270.0f, 0.0f, 180.0f);
-  servoY = Servo::Servo_base_t(&htim4, TIM_CHANNEL_2, 0.0f, 0.0f, 270.0f, 0.0f, 180.0f);
-  control = Control::Control_t(&servoX, &servoY);
-  xQueue = xQueueCreate(QUEUE_LENGTH, ITEM_SIZE);
+	//增大，舵机顺时针转
+  servo_theta1 = Servo::Servo_base_t(&htim4, TIM_CHANNEL_1, 45, 0.0f, 180.0f,0.0f, 160.0f);//
+  servo_theta2 = Servo::Servo_base_t(&htim4, TIM_CHANNEL_2,0, 0.0f, 180.0f, 0.0f, 10.0f); //
+	  servo_theta3 = Servo::Servo_base_t(&htim4, TIM_CHANNEL_3,80, 0.0f, 180.0f, 0.0f, 150.0f); 
+  servo_theta1._state=finished;
+  servo_theta2._state=finished;
+	 servo_theta3._state=finished;
+  control = Control::Control_t(&servo_theta1, &servo_theta2);
+	
   BaseType_t ok1 = xTaskCreate(Onmain_Task, "Onmain_Task", 600, NULL, 6, &Omain_handle);
   BaseType_t ok2 = xTaskCreate(OnServo1_Control, "Servo1_Motor", 1000, NULL, 3, &Servo1_Motor_handle);
   BaseType_t ok3 = xTaskCreate(OnServo2_Control, "Servo2_Motor", 1000, NULL, 3, &Servo2_Motor_handle);
@@ -62,10 +69,10 @@ void remoteControl(void *pvParameters)
 {
   while (1)
   {
+   if(servo_theta1._state==finished&&servo_theta2._state==finished)
+    control.controlUpdate(x, z, yaw);
 
-    control.controlUpdate(x, y, yaw);
-
-    vTaskDelay(50);
+    vTaskDelay(20);
   }
 }
 
@@ -74,7 +81,7 @@ void OnServo1_Control(void *pvParameters)
 
   while (1)
   {
-     servoX.control();
+    servo_theta1.control(debug_velocity);
     vTaskDelay(200);
   }
 }
@@ -83,7 +90,7 @@ void OnServo2_Control(void *pvParameters)
 {
   while (1)
   {
-//    servoY.control();
+    servo_theta2.control(debug_velocity);
     vTaskDelay(200);
   }
 }
