@@ -39,7 +39,7 @@ void Control::Control_t::controlUpdate(float x, float z, float yaw)
 				θ_1_t=atan2(_z,_x)+acos(D_B);
 					
 				float	 tmep_x= _x/100.0f;
-				float		temp_z= _z/100.0f;
+				float		temp_z= _z/100.0f;                                   
 			if((100*tmep_x*tmep_x + 100*temp_z*temp_z)<9)		
 			{
 			 tmep_m_1=(2*atan((3*temp_z - sqrt(-(tmep_x*tmep_x + temp_z*temp_z)*(100*tmep_x*tmep_x + 100*temp_z*temp_z- 9)))/(10*tmep_x*tmep_x - 3*tmep_x + 10*temp_z*temp_z)))*rad_to_degree;		
@@ -60,7 +60,7 @@ void Control::Control_t::controlUpdate(float x, float z, float yaw)
             else
             {
 //                (_servo_theta1)->_target_angle = θ_1_t*rad_to_degree;
-							
+									  (_servo_theta1)->_target_angle=  tmep_m_1;
             }
 
             if (θ_2_t > (_servo_theta2)->_use_max_angle)
@@ -73,7 +73,8 @@ void Control::Control_t::controlUpdate(float x, float z, float yaw)
             }
             else
             {
-                (_servo_theta2)->_target_angle = θ_2_t*rad_to_degree;
+//                (_servo_theta2)->_target_angle = θ_2_t*rad_to_degree;
+							(_servo_theta2)->_target_angle =tmep_m_2;
             }
         }
     }
