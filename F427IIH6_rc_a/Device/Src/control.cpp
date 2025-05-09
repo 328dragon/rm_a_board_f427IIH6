@@ -29,7 +29,7 @@ void Control::Control_t::controlUpdate(float x, float z, float yaw)
     }
     else
     {
-        if (x > 0 && z > 0)
+        if (x > 0 && z > -5)
         {
 
             θ_t = atan(_z / _x);
